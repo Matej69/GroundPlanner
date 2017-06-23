@@ -1,13 +1,13 @@
 #include "room.h"
 
-QImage Room::IMGInfo::pointIMG(":/img/circle.png");
+//QImage Room::IMGInfo::pointIMG(":/img/circle.png");
 float Room::IMGInfo::imgSize = 26;
 float Room::pointRadius = Room::IMGInfo::imgSize / 2;
 
 
 Room::Room()
 {
-    Room::IMGInfo::pointIMG.load(":/img/circle.png");
+    //Room::IMGInfo::pointIMG.load(":/img/circle.png");
     penWidth = 4;
     isActive = false;
 }

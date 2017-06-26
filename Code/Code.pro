@@ -42,7 +42,6 @@ HEADERS += \
 
 FORMS += \
     WindowForms/auserwindow.ui \
-    WindowForms/auserwindow.ui \
     WindowForms/editorwindow.ui
 
 RESOURCES += \

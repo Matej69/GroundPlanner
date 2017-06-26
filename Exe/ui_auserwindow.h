@@ -26,7 +26,7 @@ public:
     {
         if (AUserWindow->objectName().isEmpty())
             AUserWindow->setObjectName(QStringLiteral("AUserWindow"));
-        AUserWindow->resize(400, 300);
+        AUserWindow->resize(812, 500);
 
         retranslateUi(AUserWindow);
 
@@ -35,7 +35,7 @@ public:
 
     void retranslateUi(QWidget *AUserWindow)
     {
-        AUserWindow->setWindowTitle(QApplication::translate("AUserWindow", "Form", Q_NULLPTR));
+        AUserWindow->setWindowTitle(QApplication::translate("AUserWindow", "ABSTRACT WINDOW", Q_NULLPTR));
     } // retranslateUi
 
 };

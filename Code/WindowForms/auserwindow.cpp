@@ -14,6 +14,6 @@ AUserWindow::~AUserWindow()
 void AUserWindow::paintEvent(QPaintEvent *e)
 {
     activeFloor->RenderFloor(thisWindow);
-    update();
+    thisWindow->update();
 }
 

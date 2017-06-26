@@ -11,6 +11,8 @@ class Global
 public:
     Global();
     static bool IsPosInsidePointRadius(QPoint &_p1, QPoint &_p2, float _p2Radius);
+    static QPoint GetMiddlePoint(QPoint &_p1, QPoint &_p2);
+    static QPoint GetShapeCenter(QVector<QPoint> &_vec);
 };
 
 #endif // GLOBAL_H

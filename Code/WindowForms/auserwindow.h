@@ -2,6 +2,7 @@
 #define AUSERWINDOW_H
 
 #include <QWidget>
+#include <QMainWindow>
 #include "User/floor.h"
 #include "User/room.h"
 
@@ -9,12 +10,13 @@
 #include <QPainter>
 #include <QPolygon>
 #include <QPen>
+#include <QtGui>
 
 namespace Ui {
 class AUserWindow;
 }
 
-class AUserWindow : public QWidget
+class AUserWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -27,11 +29,9 @@ protected:
     E_USER userID;
     QWidget *thisWindow;
 
-    //Room *room;
-
     Floor *activeFloor;         //this is the floor that will be rendered on screen
-    virtual void OnFloorDropdown() = 0;
-    virtual void OnUserSwitchButton() = 0;
+    //virtual void OnFloorDropdown();
+    //virtual void OnUserSwitchButton();
 
     void paintEvent(QPaintEvent *e);
 

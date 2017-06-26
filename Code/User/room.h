@@ -2,6 +2,7 @@
 #define ROOM_H
 
 #include <string>
+#include <QDebug>
 #include <QPoint>
 #include <QImage>
 #include <QPainter>
@@ -13,6 +14,7 @@
 #include <cmath>
 
 #include "auserwindow.h"
+#include "global.h"
 
 using namespace std;
 
@@ -22,8 +24,9 @@ public:
     Room();
     ~Room();
 
-    string nameID;
+    QString nameID;
     QVector<QPoint> points;
+    QPoint centerPoint;
     bool isActive;
 
     static float pointRadius;
@@ -38,6 +41,7 @@ public:
     void DeletePoint(QPoint &_point);
 
     void RenderRoom(QWidget *_window);
+    void UpdateMiddlePointPos();
 
 
 private:    

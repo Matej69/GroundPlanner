@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/img">
-        <file>circle.png</file>
+        <file>dragPoint.png</file>
+        <file>edgePoint.png</file>
     </qresource>
 </RCC>

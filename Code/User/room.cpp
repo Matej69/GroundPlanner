@@ -1,21 +1,42 @@
 #include "room.h"
 
-//QImage Room::IMGInfo::pointIMG(":/img/circle.png");
-float Room::IMGInfo::imgSize = 26;
+QImage Room::IMGInfo::edgePointIMG;
+QImage Room::IMGInfo::centerPointIMG;
+float Room::IMGInfo::imgSize = 20;
 float Room::pointRadius = Room::IMGInfo::imgSize / 2;
 
+int Room::TextboxInfo::h = 15;
+int Room::TextboxInfo::w = 75;
+int Room::TextboxInfo::xDist = 0;
+int Room::TextboxInfo::yDist = 14;
 
-Room::Room()
+
+
+Room::Room(QWidget *_window)
 {
-    //Room::IMGInfo::pointIMG.load(":/img/circle.png");
+    //for now init will be here but it should happen once and not in every constructor
+    Room::IMGInfo::edgePointIMG.load(":/img/edgePoint.png");
+    Room::IMGInfo::centerPointIMG.load(":/img/dragPoint.png");
+
+    editBox = new QLineEdit(_window);
+    _window->layout()->addWidget(editBox);
+
     centerPoint = QPoint(0,0);
     penWidth = 4;
     isActive = false;
 }
 
+Room::Room()
+{
+    qDebug() << "ssss";
+}
+
 Room::~Room()
 {
+    //dealocate room textbox
+    //delete editBox;
 }
+
 
 void Room::AddPoint(QPoint &_point)
 {
@@ -32,6 +53,26 @@ void Room::DeletePoint(QPoint &_point)
             break;
         }
 }
+
+
+
+void Room::MoveRoomTo(QPoint &_p)
+{
+    QPoint moveBy = centerPoint - _p;
+    //set center point pos
+    centerPoint.setX(_p.x());
+    centerPoint.setY(_p.y());
+    //set edge points pos
+    for(int i = 0; i < points.length(); ++i)
+    {
+        points[i].setX(points[i].x() - moveBy.x());
+        points[i].setY(points[i].y() - moveBy.y());
+    }
+    //set textbox pos
+    UpdateTextboxPos();
+}
+
+
 
 void Room::RenderRoom(QWidget *_window)
 {
@@ -66,19 +107,31 @@ void Room::RenderRoom(QWidget *_window)
     //draw edge points
     for(int i = 0; i < points.length(); ++i)
     {
-        painter.drawImage(QRect(points[i].x() - IMGInfo::imgSize/2, points[i].y() - IMGInfo::imgSize/2, IMGInfo::imgSize, IMGInfo::imgSize), QImage(":/img/circle.png"));
+        painter.drawImage(QRect(points[i].x() - IMGInfo::imgSize/2, points[i].y() - IMGInfo::imgSize/2, IMGInfo::imgSize, IMGInfo::imgSize), Room::IMGInfo::edgePointIMG);
     }
     //draw center point
-    painter.drawImage(QRect(centerPoint.x() - IMGInfo::imgSize/2, centerPoint.y() - IMGInfo::imgSize/2, IMGInfo::imgSize, IMGInfo::imgSize), QImage(":/img/circle.png"));
+    painter.drawImage(QRect(centerPoint.x() - IMGInfo::imgSize/2, centerPoint.y() - IMGInfo::imgSize/2, IMGInfo::imgSize, IMGInfo::imgSize), Room::IMGInfo::centerPointIMG);
 
 
 }
 
 void Room::UpdateMiddlePointPos()
 {
+    //calculate new center point
     QPoint point = Global::GetShapeCenter(points);
     centerPoint.setX(point.x());
     centerPoint.setY(point.y());
+    //update textBox pos
+    UpdateTextboxPos();
+
+}
+
+void Room::UpdateTextboxPos()
+{
+    editBox->setGeometry(QRect(centerPoint.x() - Room::TextboxInfo::xDist - Room::TextboxInfo::w / 2,
+                               centerPoint.y() + Room::TextboxInfo::yDist,
+                               Room::TextboxInfo::w,
+                               Room::TextboxInfo::h));
 }
 
 

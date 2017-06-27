@@ -41,6 +41,7 @@ private:
     Ui::EditorWindow *ui;
 
     QPoint *activePoint;
+    Room *movableRoom;
     bool canDeletePoint;
     bool canDeleteRoom;
 

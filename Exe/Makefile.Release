@@ -142,7 +142,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_res.cpp
 release\qrc_res.cpp: ..\Code\Resources\res.qrc \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\bin\rcc.exe \
-		..\Code\Resources\circle.png
+		..\Code\Resources\dragPoint.png \
+		..\Code\Resources\edgePoint.png
 	E:\PROGRAMI\Qt\5.9\msvc2015_64\bin\rcc.exe -name res ..\Code\Resources\res.qrc -o release\qrc_res.cpp
 
 compiler_moc_predefs_make_all: release\moc_predefs.h

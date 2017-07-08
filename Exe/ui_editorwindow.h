@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -29,6 +30,7 @@ public:
     QPushButton *pointDelete;
     QPushButton *floorDelete;
     QPushButton *roomDelete;
+    QComboBox *dropBox_floors;
 
     void setupUi(QWidget *EditorWindow)
     {
@@ -135,6 +137,9 @@ public:
         roomDelete->setCheckable(false);
         roomDelete->setChecked(false);
         roomDelete->setAutoDefault(false);
+        dropBox_floors = new QComboBox(EditorWindow);
+        dropBox_floors->setObjectName(QStringLiteral("dropBox_floors"));
+        dropBox_floors->setGeometry(QRect(0, 260, 121, 22));
 
         retranslateUi(EditorWindow);
 

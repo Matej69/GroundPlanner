@@ -582,6 +582,16 @@
     </property>
    </widget>
   </widget>
+  <widget class="QComboBox" name="dropBox_floors">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>260</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -10,16 +10,13 @@ public:
     ~Floor();
 
     QVector<Room> rooms;
+    QString nameID;
 
     void RenderFloor(QWidget *_window);
-    void AddRoom(Room &_room);
+    void AddRoom(Room &_room, QWidget *_window);
     void DeleteRoom(Room &_room);
 
 
-
-
-private:
-    string nameID;
 
 
 

@@ -1,8 +1,7 @@
 #include "WindowForms/editorwindow.h"
 #include "ui_editorwindow.h"
 
-#include <QHBoxLayout>
-#include <QLineEdit>
+
 
 
 EditorWindow::EditorWindow(QWidget *parent) :
@@ -22,19 +21,15 @@ EditorWindow::EditorWindow(QWidget *parent) :
     arePointsSticky = true;
     canDeletePoint = false;
     canDeleteRoom = false;
+    floors = QVector<Floor>();
+
 
     //for testing
-    activeFloor = new Floor();
-    Room room = Room(thisWindow);     room.AddPoint(QPoint(240,40)); room.AddPoint(QPoint(200,40)); room.AddPoint(QPoint(240,200));
-    Room room1 = Room(thisWindow);    room1.AddPoint(QPoint(160,80)); room1.AddPoint(QPoint(450,40)); room1.AddPoint(QPoint(210,150));
-    activeFloor->AddRoom(room);
-    activeFloor->AddRoom(room1);
+    JSONConnection con;
+    con.ReadAll(floors, thisWindow);
 
-
-    //QLineEdit* editBox = new QLineEdit(thisWindow);
-    //thisWindow->layout()->addWidget(editBox);
-
-
+    SetActiveFloor(floors[1]);
+    RefreshDropdownContent();
 
 }
 
@@ -59,7 +54,6 @@ void EditorWindow::SetActiveRoom(Room& _room)
     if(activeRoom != nullptr)
     {
         activeRoom->isActive = false;
-        qDebug() << activeRoom->centerPoint;
     }
     //new current room will become active
     activeRoom = &_room;
@@ -88,7 +82,7 @@ void EditorWindow::mousePressEvent(QMouseEvent *e)
             QPoint& curPoint = activeFloor->rooms[i].points[j];
             Room& curRoom = activeFloor->rooms[i];
             if(Global::IsPosInsidePointRadius(QPoint(e->x(),e->y()), curPoint, Room::pointRadius))
-            {                
+            {
                 //if point can be deleted on click delete it, else just point at it
                 if(canDeletePoint)
                     curRoom.DeletePoint(curPoint);
@@ -99,7 +93,7 @@ void EditorWindow::mousePressEvent(QMouseEvent *e)
                 }
                 return;
             }
-        }    
+        }
     }
 }
 
@@ -129,7 +123,6 @@ void EditorWindow::mouseReleaseEvent(QMouseEvent *e)
 
 void EditorWindow::mouseMoveEvent(QMouseEvent *e)
 {
-
     //move selected point to mouse pos
     if(activePoint != nullptr)
     {        
@@ -139,7 +132,7 @@ void EditorWindow::mouseMoveEvent(QMouseEvent *e)
     //update  middle point of selected room
     if(activeRoom != nullptr)
     {
-        activeRoom->UpdateMiddlePointPos();        
+        activeRoom->UpdateMiddlePointPos();
     }
     //If movableRoom is pointing at room, move that room as mouse moves
     if(movableRoom != nullptr && activeRoom != nullptr)
@@ -152,8 +145,9 @@ void EditorWindow::mouseMoveEvent(QMouseEvent *e)
 }
 
 
-
-
+//*************************************************************************************************
+//WHEN NEW ROOM IS ADDED PROGRAM WILL BREAK BECAUSEOF TEXTFIELD OF X ROOM THAT IS PROBABLY NULL
+//*************************************************************************************************
 void EditorWindow::on_roomAdd_clicked()
 {
     if(activeFloor != nullptr)
@@ -164,12 +158,15 @@ void EditorWindow::on_roomAdd_clicked()
         room.AddPoint(QPoint(width()/2 + dist, height()/2 - dist));
         room.AddPoint(QPoint(width()/2 + dist, height()/2 + dist));
         room.AddPoint(QPoint(width()/2 - dist, height()/2 + dist));
-        //only here we are manualy changing activity bacouse once we add new room, activeRoom pointer will be pointing to old address
+       //only here we are manualy changing activity bacouse once we add new room, activeRoom pointer will be pointing to old address
         if(activeRoom != nullptr)
             activeRoom->isActive = false;
-        activeFloor->AddRoom(room);
-        //active room will be newly added room
-        SetActiveRoom(activeFloor->rooms[activeFloor->rooms.length()-1]);
+        //************************THIS CAUSES ERROR************************
+        activeFloor->AddRoom(room,thisWindow);
+       //new room will also have visible textbox
+        //activeFloor->rooms[activeFloor->rooms.length()-1].SetTextboxVisiblity(true);
+       //active room will be newly added room
+        //SetActiveRoom(activeFloor->rooms[activeFloor->rooms.length()-1]);
     }
 
 }
@@ -188,6 +185,7 @@ void EditorWindow::on_pointAdd_clicked()
 void EditorWindow::on_floorAdd_clicked()
 {
 
+    RefreshDropdownContent();
 }
 
 
@@ -200,6 +198,7 @@ void EditorWindow::on_roomDelete_clicked()
         for(int i = 0; i < activeFloor->rooms.length(); ++i)
             if(&activeFloor->rooms[i] == &(*activeRoom))
             {
+                //delete activeRoom->editBox;
                 activeFloor->DeleteRoom(*activeRoom);
                 activeRoom = nullptr;
                 break;
@@ -215,4 +214,23 @@ void EditorWindow::on_pointDelete_clicked()
 void EditorWindow::on_floorDelete_clicked()
 {
 
+    RefreshDropdownContent();
 }
+
+
+
+void EditorWindow::RefreshDropdownContent()
+{
+    ui->dropBox_floors->clear();
+    for(int i = 0; i < floors.length(); ++i)
+        ui->dropBox_floors->addItem(floors[i].nameID);
+}
+
+void EditorWindow::on_dropBox_floors_activated(const QString& _name)
+{
+    //ON ITEM CLICKED
+    for(int i = 0; i < floors.length(); ++i)
+        if(floors[i].nameID == _name)
+            SetActiveFloor(floors[i]);
+}
+

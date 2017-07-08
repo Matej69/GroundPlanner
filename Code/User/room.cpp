@@ -10,31 +10,31 @@ int Room::TextboxInfo::w = 75;
 int Room::TextboxInfo::xDist = 0;
 int Room::TextboxInfo::yDist = 14;
 
-
-
 Room::Room(QWidget *_window)
 {
     //for now init will be here but it should happen once and not in every constructor
     Room::IMGInfo::edgePointIMG.load(":/img/edgePoint.png");
     Room::IMGInfo::centerPointIMG.load(":/img/dragPoint.png");
 
-    editBox = new QLineEdit(_window);
-    _window->layout()->addWidget(editBox);
+    editBox = nullptr;
+    //editBox = new QLineEdit(_window);
+    //_window->layout()->addWidget(editBox);
+    //delete editBox;
 
-    centerPoint = QPoint(0,0);
+
+    centerPoint = QPoint(70,70);
     penWidth = 4;
     isActive = false;
 }
 
 Room::Room()
 {
-    qDebug() << "ssss";
+    qDebug() << "Default called";
 }
 
 Room::~Room()
 {
-    //dealocate room textbox
-    //delete editBox;
+    delete editBox;
 }
 
 
@@ -128,10 +128,19 @@ void Room::UpdateMiddlePointPos()
 
 void Room::UpdateTextboxPos()
 {
-    editBox->setGeometry(QRect(centerPoint.x() - Room::TextboxInfo::xDist - Room::TextboxInfo::w / 2,
-                               centerPoint.y() + Room::TextboxInfo::yDist,
-                               Room::TextboxInfo::w,
-                               Room::TextboxInfo::h));
+    if(editBox != nullptr)
+    {
+        editBox->setGeometry(QRect(centerPoint.x() - Room::TextboxInfo::xDist - Room::TextboxInfo::w / 2,
+                                   centerPoint.y() + Room::TextboxInfo::yDist,
+                                   Room::TextboxInfo::w,
+                                   Room::TextboxInfo::h));
+    }
+}
+
+void Room::SetTextboxVisiblity(bool _state)
+{
+    editBox->setVisible(_state);
+    editBox->setEnabled(_state);
 }
 
 

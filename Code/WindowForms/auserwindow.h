@@ -29,11 +29,13 @@ protected:
     E_USER userID;
     QWidget *thisWindow;
 
-    Floor *activeFloor;         //this is the floor that will be rendered on screen
+    Floor *activeFloor;         //the floor that will be rendered on screen
+    QVector<Floor> floors;       //all floors that are available
     //virtual void OnFloorDropdown();
     //virtual void OnUserSwitchButton();
 
     void paintEvent(QPaintEvent *e);
+    void SetActiveFloor(Floor& _floor);
 
 
 };

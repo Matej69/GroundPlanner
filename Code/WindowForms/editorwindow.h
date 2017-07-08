@@ -4,10 +4,13 @@
 #include <QWidget>
 #include <QDebug>
 #include <QMouseEvent>
-#include "QPoint"
+#include <QHBoxLayout>
+#include <QLineEdit>
 
+#include "QPoint"
 #include "auserwindow.h"
 #include "User/global.h"
+#include "User/jsonconnection.h"
 
 namespace Ui {
 class EditorWindow;
@@ -27,6 +30,8 @@ public:
     bool arePointsSticky;
     Room *activeRoom;
 
+    void RefreshDropdownContent();
+
 
 private slots:
     void on_roomAdd_clicked();
@@ -36,6 +41,8 @@ private slots:
     void on_roomDelete_clicked();
     void on_pointDelete_clicked();
     void on_floorDelete_clicked();
+
+    void on_dropBox_floors_activated(const QString& _name);
 
 private:
     Ui::EditorWindow *ui;

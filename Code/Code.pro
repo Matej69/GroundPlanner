@@ -27,18 +27,18 @@ SOURCES += \
         main.cpp \
     User/room.cpp \
     User/floor.cpp \
-    User/jsonparser.cpp \
     WindowForms/auserwindow.cpp \
     WindowForms/editorwindow.cpp \
-    User/global.cpp
+    User/global.cpp \
+    User/jsonconnection.cpp
 
 HEADERS += \
     User/room.h \
     User/floor.h \
-    User/jsonparser.h \
     WindowForms/auserwindow.h \
     WindowForms/editorwindow.h \
-    User/global.h
+    User/global.h \
+    User/jsonconnection.h
 
 FORMS += \
     WindowForms/auserwindow.ui \

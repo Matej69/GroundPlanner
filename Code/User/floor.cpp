@@ -1,5 +1,6 @@
 #include "floor.h"
 
+
 Floor::Floor()
 {    
 }
@@ -8,6 +9,14 @@ Floor::~Floor()
 {
 }
 
+Floor::Floor(QString _name)
+{
+    nameID = _name;
+}
+
+
+
+
 void Floor::RenderFloor(QWidget *_window)
 {
     for(int i = 0; i < rooms.length(); ++i)
@@ -15,16 +24,22 @@ void Floor::RenderFloor(QWidget *_window)
 
 }
 
-void Floor::AddRoom(Room &_room, QWidget *_window)
+void Floor::AddRoom(Room &_room, QWidget *_window, bool isTextboxVisible)
 {
     rooms.push_back(_room);
+
     //Create edit box
     Room& newRoom = rooms[rooms.length()-1];
-    newRoom.editBox = new QLineEdit(_window);
+    //newRoom.editBox = new QLineEdit(_window);
+    //QLineEdit *test = new QLineEdit(_window);
+    //newRoom.editBox = test;
+
+    /*
     _window->layout()->addWidget(newRoom.editBox);
+    //set edit box visibility
+    newRoom.SetTextboxVisiblity(isTextboxVisible);
     newRoom.UpdateTextboxPos();
-    //set edit box to invisible
-    newRoom.SetTextboxVisiblity(false);
+    */
 }
 
 void Floor::DeleteRoom(Room &_room)

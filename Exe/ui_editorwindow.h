@@ -31,21 +31,23 @@ public:
     QPushButton *floorDelete;
     QPushButton *roomDelete;
     QComboBox *dropBox_floors;
+    QPushButton *saveAll;
 
     void setupUi(QWidget *EditorWindow)
     {
         if (EditorWindow->objectName().isEmpty())
             EditorWindow->setObjectName(QStringLiteral("EditorWindow"));
         EditorWindow->resize(839, 691);
+        EditorWindow->setStyleSheet(QStringLiteral("background:#131313;"));
         widget = new QWidget(EditorWindow);
         widget->setObjectName(QStringLiteral("widget"));
         widget->setEnabled(true);
-        widget->setGeometry(QRect(0, 0, 121, 261));
+        widget->setGeometry(QRect(0, 0, 141, 161));
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
-        QBrush brush1(QColor(0, 255, 127, 255));
+        QBrush brush1(QColor(96, 96, 96, 255));
         brush1.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::Button, brush1);
         QBrush brush2(QColor(127, 255, 191, 255));
@@ -65,7 +67,7 @@ public:
         brush6.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::BrightText, brush6);
         palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
-        palette.setBrush(QPalette::Active, QPalette::Base, brush6);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
         palette.setBrush(QPalette::Active, QPalette::Window, brush1);
         palette.setBrush(QPalette::Active, QPalette::Shadow, brush);
         palette.setBrush(QPalette::Active, QPalette::AlternateBase, brush2);
@@ -82,7 +84,7 @@ public:
         palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
         palette.setBrush(QPalette::Inactive, QPalette::BrightText, brush6);
         palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
-        palette.setBrush(QPalette::Inactive, QPalette::Base, brush6);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush1);
         palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
         palette.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
         palette.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush2);
@@ -100,46 +102,60 @@ public:
         palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
-        palette.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
+        QBrush brush8(QColor(0, 255, 127, 255));
+        brush8.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush8);
         palette.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush7);
         palette.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
         widget->setPalette(palette);
-        widget->setAutoFillBackground(true);
+        widget->setAutoFillBackground(false);
+        widget->setStyleSheet(QStringLiteral("background:#606060;"));
         roomAdd = new QPushButton(widget);
         roomAdd->setObjectName(QStringLiteral("roomAdd"));
-        roomAdd->setGeometry(QRect(0, 0, 38, 38));
-        roomAdd->setStyleSheet(QStringLiteral(""));
+        roomAdd->setGeometry(QRect(10, 10, 38, 38));
+        roomAdd->setStyleSheet(QLatin1String("background:#3f3f3f; \n"
+"color:white;font-weight:bold;font-size:10px;\n"
+"QDialog {background: red;};\n"
+"QInputDialog {background: red;};"));
         roomAdd->setIconSize(QSize(32, 32));
         roomAdd->setCheckable(false);
         roomAdd->setChecked(false);
         roomAdd->setAutoDefault(false);
         pointAdd = new QPushButton(widget);
         pointAdd->setObjectName(QStringLiteral("pointAdd"));
-        pointAdd->setGeometry(QRect(40, 0, 38, 38));
+        pointAdd->setGeometry(QRect(50, 10, 38, 38));
         pointAdd->setIconSize(QSize(32, 32));
         floorAdd = new QPushButton(widget);
         floorAdd->setObjectName(QStringLiteral("floorAdd"));
-        floorAdd->setGeometry(QRect(80, 0, 38, 38));
+        floorAdd->setGeometry(QRect(90, 10, 38, 38));
         floorAdd->setIconSize(QSize(32, 32));
         pointDelete = new QPushButton(widget);
         pointDelete->setObjectName(QStringLiteral("pointDelete"));
-        pointDelete->setGeometry(QRect(40, 40, 38, 38));
+        pointDelete->setGeometry(QRect(50, 50, 38, 38));
         pointDelete->setIconSize(QSize(32, 32));
         floorDelete = new QPushButton(widget);
         floorDelete->setObjectName(QStringLiteral("floorDelete"));
-        floorDelete->setGeometry(QRect(80, 40, 38, 38));
+        floorDelete->setGeometry(QRect(90, 50, 38, 38));
+        floorDelete->setAutoFillBackground(false);
         floorDelete->setIconSize(QSize(32, 32));
         roomDelete = new QPushButton(widget);
         roomDelete->setObjectName(QStringLiteral("roomDelete"));
-        roomDelete->setGeometry(QRect(0, 40, 38, 38));
-        roomDelete->setStyleSheet(QStringLiteral(""));
+        roomDelete->setGeometry(QRect(10, 50, 38, 38));
+        roomDelete->setStyleSheet(QLatin1String("background:#3f3f3f; \n"
+"color:white;font-weight:bold;font-size:10px;"));
         roomDelete->setIconSize(QSize(32, 32));
         roomDelete->setCheckable(false);
         roomDelete->setChecked(false);
         roomDelete->setAutoDefault(false);
-        dropBox_floors = new QComboBox(EditorWindow);
+        dropBox_floors = new QComboBox(widget);
         dropBox_floors->setObjectName(QStringLiteral("dropBox_floors"));
-        dropBox_floors->setGeometry(QRect(0, 260, 121, 22));
+        dropBox_floors->setGeometry(QRect(10, 130, 121, 21));
+        dropBox_floors->setStyleSheet(QStringLiteral("background:#3f3f3f; color:white;font-weight:bold;"));
+        saveAll = new QPushButton(widget);
+        saveAll->setObjectName(QStringLiteral("saveAll"));
+        saveAll->setGeometry(QRect(10, 90, 121, 41));
+        saveAll->setAutoFillBackground(false);
+        saveAll->setIconSize(QSize(32, 32));
 
         retranslateUi(EditorWindow);
 
@@ -150,11 +166,32 @@ public:
     {
         EditorWindow->setWindowTitle(QApplication::translate("EditorWindow", "Form", Q_NULLPTR));
         roomAdd->setText(QApplication::translate("EditorWindow", "+room", Q_NULLPTR));
+        pointAdd->setStyleSheet(QApplication::translate("EditorWindow", "background:#3f3f3f; \n"
+"color:white;font-weight:bold;font-size:10px;\n"
+"QDialog {background: red;};\n"
+"QInputDialog {background: red;};", Q_NULLPTR));
         pointAdd->setText(QApplication::translate("EditorWindow", "+point", Q_NULLPTR));
+        floorAdd->setStyleSheet(QApplication::translate("EditorWindow", "background:#3f3f3f; \n"
+"color:white;font-weight:bold;font-size:10px;\n"
+"QDialog {background: red;};\n"
+"QInputDialog {background: red;};", Q_NULLPTR));
         floorAdd->setText(QApplication::translate("EditorWindow", "+floor", Q_NULLPTR));
+        pointDelete->setStyleSheet(QApplication::translate("EditorWindow", "background:#3f3f3f; \n"
+"color:white;font-weight:bold;font-size:10px;\n"
+"QDialog {background: red;};\n"
+"QInputDialog {background: red;};", Q_NULLPTR));
         pointDelete->setText(QApplication::translate("EditorWindow", "-point", Q_NULLPTR));
+        floorDelete->setStyleSheet(QApplication::translate("EditorWindow", "background:#3f3f3f; \n"
+"color:white;font-weight:bold;font-size:10px;\n"
+"QDialog {background: red;};\n"
+"QInputDialog {background: red;};", Q_NULLPTR));
         floorDelete->setText(QApplication::translate("EditorWindow", "-floor", Q_NULLPTR));
         roomDelete->setText(QApplication::translate("EditorWindow", "-room", Q_NULLPTR));
+        saveAll->setStyleSheet(QApplication::translate("EditorWindow", "background:#3f3f3f; \n"
+"color:white;font-weight:bold;font-size:10px;\n"
+"QDialog {background: red;};\n"
+"QInputDialog {background: red;};", Q_NULLPTR));
+        saveAll->setText(QApplication::translate("EditorWindow", "SAVE", Q_NULLPTR));
     } // retranslateUi
 
 };

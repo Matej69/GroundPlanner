@@ -12,8 +12,6 @@ EditorWindow::EditorWindow(QWidget *parent) :
     this->setWindowTitle("Editor");
     this->setMouseTracking(true);
 
-
-
     activePoint = nullptr;
     activeRoom = nullptr;
     activeFloor = nullptr;
@@ -28,7 +26,7 @@ EditorWindow::EditorWindow(QWidget *parent) :
     JSONConnection con;
     con.ReadAll(floors, thisWindow);
 
-    SetActiveFloor(floors[1]);
+    SetActiveFloor(floors[0]);
     RefreshDropdownContent();
 
 }
@@ -64,6 +62,9 @@ void EditorWindow::SetActiveRoom(Room& _room)
 
 void EditorWindow::mousePressEvent(QMouseEvent *e)
 {
+    if(activeFloor == nullptr)
+        return;
+
     //selectedPoint will be pointing to room point if mouse is over it
     for(int i = activeFloor->rooms.length() - 1; i >= 0; --i)
     {
@@ -154,6 +155,7 @@ void EditorWindow::on_roomAdd_clicked()
     {
         int dist = 100;
         Room room(thisWindow);
+        //room.SetTextboxVisiblity(true);
         room.AddPoint(QPoint(width()/2 - dist, height()/2 - dist));
         room.AddPoint(QPoint(width()/2 + dist, height()/2 - dist));
         room.AddPoint(QPoint(width()/2 + dist, height()/2 + dist));
@@ -161,12 +163,13 @@ void EditorWindow::on_roomAdd_clicked()
        //only here we are manualy changing activity bacouse once we add new room, activeRoom pointer will be pointing to old address
         if(activeRoom != nullptr)
             activeRoom->isActive = false;
-        //************************THIS CAUSES ERROR************************
-        activeFloor->AddRoom(room,thisWindow);
+
+        activeFloor->AddRoom(room,thisWindow, true);
+
        //new room will also have visible textbox
         //activeFloor->rooms[activeFloor->rooms.length()-1].SetTextboxVisiblity(true);
        //active room will be newly added room
-        //SetActiveRoom(activeFloor->rooms[activeFloor->rooms.length()-1]);
+        SetActiveRoom(activeFloor->rooms[activeFloor->rooms.length()-1]);
     }
 
 }
@@ -184,8 +187,19 @@ void EditorWindow::on_pointAdd_clicked()
 
 void EditorWindow::on_floorAdd_clicked()
 {
-
-    RefreshDropdownContent();
+    bool isConfirmed;
+    QString floorName = QInputDialog::getText(thisWindow,
+                                              "Floor creation",
+                                              "Floor name:",
+                                              QLineEdit::Normal,
+                                              "",
+                                              &isConfirmed);
+    if(isConfirmed)
+    {
+        floors.push_back(Floor(floorName));
+        //SetActiveFloor(floors[floors.length()-1]);
+        RefreshDropdownContent();
+    }
 }
 
 
@@ -213,18 +227,28 @@ void EditorWindow::on_pointDelete_clicked()
 
 void EditorWindow::on_floorDelete_clicked()
 {
-
+    //remove current floor from vector
+    if(activeFloor != nullptr)
+        for(int i = floors.length()-1; i >= 0; --i)
+            if(&floors[i] == &*activeFloor)
+            {
+                floors.removeAt(i);
+                activeFloor = nullptr;
+                activeRoom = nullptr;
+                activePoint = nullptr;
+            }
     RefreshDropdownContent();
 }
 
 
 
-void EditorWindow::RefreshDropdownContent()
+void EditorWindow::on_saveAll_clicked()
 {
-    ui->dropBox_floors->clear();
-    for(int i = 0; i < floors.length(); ++i)
-        ui->dropBox_floors->addItem(floors[i].nameID);
+    JSONConnection con;
+    con.WriteAll(floors);
 }
+
+
 
 void EditorWindow::on_dropBox_floors_activated(const QString& _name)
 {
@@ -234,3 +258,15 @@ void EditorWindow::on_dropBox_floors_activated(const QString& _name)
             SetActiveFloor(floors[i]);
 }
 
+
+
+
+
+
+
+void EditorWindow::RefreshDropdownContent()
+{
+    ui->dropBox_floors->clear();
+    for(int i = 0; i < floors.length(); ++i)
+        ui->dropBox_floors->addItem(floors[i].nameID);
+}

@@ -11,19 +11,15 @@ int Room::TextboxInfo::xDist = 0;
 int Room::TextboxInfo::yDist = 14;
 
 Room::Room(QWidget *_window)
-{
+{    
     //for now init will be here but it should happen once and not in every constructor
     Room::IMGInfo::edgePointIMG.load(":/img/edgePoint.png");
     Room::IMGInfo::centerPointIMG.load(":/img/dragPoint.png");
 
     editBox = nullptr;
-    //editBox = new QLineEdit(_window);
-    //_window->layout()->addWidget(editBox);
-    //delete editBox;
-
 
     centerPoint = QPoint(70,70);
-    penWidth = 4;
+    penWidth = 2;
     isActive = false;
 }
 
@@ -75,22 +71,21 @@ void Room::MoveRoomTo(QPoint &_p)
 
 
 void Room::RenderRoom(QWidget *_window)
-{
-
+{    
     QPainter painter(_window);
     painter.setRenderHint(QPainter::Antialiasing);
 
     if(isActive)    //fill room with color only if it's active
     {
         QBrush fillBrush;
-        fillBrush.setColor(Qt::blue);
+        fillBrush.setColor(Qt::darkCyan);
         fillBrush.setStyle(Qt::SolidPattern);
         painter.setBrush(fillBrush);
     }
 
     QPen pen;
     pen.setWidth(penWidth);
-    pen.setColor(Qt::red);
+    pen.setColor(Qt::white);
     pen.setJoinStyle(Qt::MiterJoin);
     painter.setPen(pen);
 
@@ -111,9 +106,9 @@ void Room::RenderRoom(QWidget *_window)
     }
     //draw center point
     painter.drawImage(QRect(centerPoint.x() - IMGInfo::imgSize/2, centerPoint.y() - IMGInfo::imgSize/2, IMGInfo::imgSize, IMGInfo::imgSize), Room::IMGInfo::centerPointIMG);
-
-
 }
+
+
 
 void Room::UpdateMiddlePointPos()
 {
@@ -139,8 +134,11 @@ void Room::UpdateTextboxPos()
 
 void Room::SetTextboxVisiblity(bool _state)
 {
-    editBox->setVisible(_state);
-    editBox->setEnabled(_state);
+    if(editBox != nullptr)
+    {
+        editBox->setVisible(_state);
+        editBox->setEnabled(_state);
+    }
 }
 
 

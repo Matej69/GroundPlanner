@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QHBoxLayout>
 #include <QLineEdit>
+#include <QInputDialog>
 
 #include "QPoint"
 #include "auserwindow.h"
@@ -43,6 +44,8 @@ private slots:
     void on_floorDelete_clicked();
 
     void on_dropBox_floors_activated(const QString& _name);
+
+    void on_saveAll_clicked();
 
 private:
     Ui::EditorWindow *ui;

@@ -23,7 +23,7 @@ public:
     static QString path;
 
     void ReadAll(QVector<Floor>& _floors, QWidget *_window);
-    void WriteAll(Floor& _floor);
+    void WriteAll(QVector<Floor> &_floors);
 
 };
 

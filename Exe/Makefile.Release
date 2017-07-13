@@ -614,6 +614,9 @@ release\moc_editorwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWid
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextformat.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpen.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QInputDialog \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qinputdialog.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QPoint \
 		..\Code\WindowForms\auserwindow.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QMainWindow \
@@ -1004,6 +1007,9 @@ release\main.obj: ..\Code\main.cpp ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextformat.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpen.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QInputDialog \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qinputdialog.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QPoint \
 		../Code/WindowForms/auserwindow.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QMainWindow \
@@ -1712,6 +1718,9 @@ release\editorwindow.obj: ..\Code\WindowForms\editorwindow.cpp ../Code/WindowFor
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextformat.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpen.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QInputDialog \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qinputdialog.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QPoint \
 		../Code/WindowForms/auserwindow.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QMainWindow \

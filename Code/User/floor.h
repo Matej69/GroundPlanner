@@ -6,6 +6,7 @@
 class Floor
 {
 public:
+    Floor(QString _name);
     Floor();
     ~Floor();
 
@@ -13,7 +14,7 @@ public:
     QString nameID;
 
     void RenderFloor(QWidget *_window);
-    void AddRoom(Room &_room, QWidget *_window);
+    void AddRoom(Room &_room, QWidget *_window, bool isTextboxVisible);
     void DeleteRoom(Room &_room);
 
 

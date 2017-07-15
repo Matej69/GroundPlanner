@@ -52,9 +52,11 @@ SOURCES       = ..\Code\main.cpp \
 		..\Code\WindowForms\auserwindow.cpp \
 		..\Code\WindowForms\editorwindow.cpp \
 		..\Code\User\global.cpp \
-		..\Code\User\jsonconnection.cpp debug\qrc_res.cpp \
+		..\Code\User\jsonconnection.cpp \
+		..\Code\WindowForms\clientwindow.cpp debug\qrc_res.cpp \
 		debug\moc_auserwindow.cpp \
-		debug\moc_editorwindow.cpp
+		debug\moc_editorwindow.cpp \
+		debug\moc_clientwindow.cpp
 OBJECTS       = debug\main.obj \
 		debug\room.obj \
 		debug\floor.obj \
@@ -62,22 +64,26 @@ OBJECTS       = debug\main.obj \
 		debug\editorwindow.obj \
 		debug\global.obj \
 		debug\jsonconnection.obj \
+		debug\clientwindow.obj \
 		debug\qrc_res.obj \
 		debug\moc_auserwindow.obj \
-		debug\moc_editorwindow.obj
+		debug\moc_editorwindow.obj \
+		debug\moc_clientwindow.obj
 
 DIST          =  ..\Code\User\room.h \
 		..\Code\User\floor.h \
 		..\Code\WindowForms\auserwindow.h \
 		..\Code\WindowForms\editorwindow.h \
 		..\Code\User\global.h \
-		..\Code\User\jsonconnection.h ..\Code\main.cpp \
+		..\Code\User\jsonconnection.h \
+		..\Code\WindowForms\clientwindow.h ..\Code\main.cpp \
 		..\Code\User\room.cpp \
 		..\Code\User\floor.cpp \
 		..\Code\WindowForms\auserwindow.cpp \
 		..\Code\WindowForms\editorwindow.cpp \
 		..\Code\User\global.cpp \
-		..\Code\User\jsonconnection.cpp
+		..\Code\User\jsonconnection.cpp \
+		..\Code\WindowForms\clientwindow.cpp
 QMAKE_TARGET  = Code
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = Code.exe
@@ -104,9 +110,9 @@ DESTDIR_TARGET = debug\Code.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_auserwindow.h ui_editorwindow.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_auserwindow.h ui_editorwindow.h ui_clientwindow.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-debug\main.obj debug\room.obj debug\floor.obj debug\auserwindow.obj debug\editorwindow.obj debug\global.obj debug\jsonconnection.obj debug\qrc_res.obj debug\moc_auserwindow.obj debug\moc_editorwindow.obj
+debug\main.obj debug\room.obj debug\floor.obj debug\auserwindow.obj debug\editorwindow.obj debug\global.obj debug\jsonconnection.obj debug\clientwindow.obj debug\qrc_res.obj debug\moc_auserwindow.obj debug\moc_editorwindow.obj debug\moc_clientwindow.obj
 $(LIBS)
 <<
 
@@ -116,10 +122,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Code.zip $(SOURCES) $(DIST) ..\Code\Code.pro ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\spec_pre.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\common\angle.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\common\msvc-desktop.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\qconfig.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_core.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_help.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_location.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_network.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_script.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qt_functions.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qt_config.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\win32-msvc\qmake.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\exclusive_builds.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\common\msvc-version.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\toolchain.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\default_pre.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\win32\default_pre.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\resolve_config.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\default_post.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\build_pass.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qml_debug.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\precompile_header.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\warn_on.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qt.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\resources.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\moc.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\win32\opengl.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\uic.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qmake_use.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\file_copies.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\win32\windows.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\testcase_targets.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\exceptions.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\yacc.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\lex.prf ..\Code\Code.pro ..\Code\Resources\res.qrc ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\qtmaind.prl ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\Qt5Widgetsd.prl ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\Qt5Guid.prl ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\Qt5Cored.prl   ..\Code\Resources\res.qrc ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\data\dummy.cpp ..\Code\User\room.h ..\Code\User\floor.h ..\Code\WindowForms\auserwindow.h ..\Code\WindowForms\editorwindow.h ..\Code\User\global.h ..\Code\User\jsonconnection.h ..\Code\main.cpp ..\Code\User\room.cpp ..\Code\User\floor.cpp ..\Code\WindowForms\auserwindow.cpp ..\Code\WindowForms\editorwindow.cpp ..\Code\User\global.cpp ..\Code\User\jsonconnection.cpp ..\Code\WindowForms\auserwindow.ui ..\Code\WindowForms\editorwindow.ui    
+	$(ZIP) Code.zip $(SOURCES) $(DIST) ..\Code\Code.pro ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\spec_pre.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\common\angle.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\common\msvc-desktop.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\qconfig.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_core.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_help.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_location.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_network.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_script.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qt_functions.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qt_config.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\win32-msvc\qmake.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\exclusive_builds.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\common\msvc-version.conf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\toolchain.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\default_pre.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\win32\default_pre.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\resolve_config.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\default_post.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\build_pass.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qml_debug.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\precompile_header.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\warn_on.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qt.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\resources.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\moc.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\win32\opengl.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\uic.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\qmake_use.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\file_copies.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\win32\windows.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\testcase_targets.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\exceptions.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\yacc.prf ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\lex.prf ..\Code\Code.pro ..\Code\Resources\res.qrc ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\qtmaind.prl ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\Qt5Widgetsd.prl ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\Qt5Guid.prl ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\lib\Qt5Cored.prl   ..\Code\Resources\res.qrc ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\data\dummy.cpp ..\Code\User\room.h ..\Code\User\floor.h ..\Code\WindowForms\auserwindow.h ..\Code\WindowForms\editorwindow.h ..\Code\User\global.h ..\Code\User\jsonconnection.h ..\Code\WindowForms\clientwindow.h ..\Code\main.cpp ..\Code\User\room.cpp ..\Code\User\floor.cpp ..\Code\WindowForms\auserwindow.cpp ..\Code\WindowForms\editorwindow.cpp ..\Code\User\global.cpp ..\Code\User\jsonconnection.cpp ..\Code\WindowForms\clientwindow.cpp ..\Code\WindowForms\auserwindow.ui ..\Code\WindowForms\editorwindow.ui ..\Code\WindowForms\clientwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\room.obj debug\floor.obj debug\auserwindow.obj debug\editorwindow.obj debug\global.obj debug\jsonconnection.obj debug\qrc_res.obj debug\moc_auserwindow.obj debug\moc_editorwindow.obj
+	-$(DEL_FILE) debug\main.obj debug\room.obj debug\floor.obj debug\auserwindow.obj debug\editorwindow.obj debug\global.obj debug\jsonconnection.obj debug\clientwindow.obj debug\qrc_res.obj debug\moc_auserwindow.obj debug\moc_editorwindow.obj debug\moc_clientwindow.obj
 	-$(DEL_FILE) debug\Code.exp debug\Code.vc.pdb debug\Code.ilk debug\Code.idb
 
 distclean: clean 
@@ -152,9 +158,9 @@ compiler_moc_predefs_clean:
 debug\moc_predefs.h: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\data\dummy.cpp
 	cl -BxE:\PROGRAMI\Qt\5.9\msvc2015_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E -Za ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\mkspecs\features\data\dummy.cpp 2>NUL >debug\moc_predefs.h
 
-compiler_moc_header_make_all: debug\moc_auserwindow.cpp debug\moc_editorwindow.cpp
+compiler_moc_header_make_all: debug\moc_auserwindow.cpp debug\moc_editorwindow.cpp debug\moc_clientwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_auserwindow.cpp debug\moc_editorwindow.cpp
+	-$(DEL_FILE) debug\moc_auserwindow.cpp debug\moc_editorwindow.cpp debug\moc_clientwindow.cpp
 debug\moc_auserwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QWidget \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qwidget.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -284,13 +290,29 @@ debug\moc_auserwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidget
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qgridlayout.h \
 		..\Code\User\auserwindow.h \
 		..\Code\User\global.h \
+		..\Code\User\jsonconnection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGui \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGuiDepends \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCore \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCoreDepends \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractanimation.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstracteventdispatcher.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventloop.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractitemmodel.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractnativeeventfilter.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractproxymodel.h \
@@ -307,13 +329,10 @@ debug\moc_auserwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidget
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcollator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineoption.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineparser.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreapplication.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcryptographichash.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdatetime.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdeadlinetimer.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qelapsedtimer.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdiriterator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeasingcurve.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qendian.h \
@@ -335,10 +354,6 @@ debug\moc_auserwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidget
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qidentityproxymodel.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qisenum.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibrary.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibraryinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qversionnumber.h \
@@ -635,13 +650,29 @@ debug\moc_editorwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidge
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QLayout \
 		..\Code\User\auserwindow.h \
 		..\Code\User\global.h \
+		..\Code\User\jsonconnection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGui \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGuiDepends \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCore \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCoreDepends \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractanimation.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstracteventdispatcher.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventloop.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractitemmodel.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractnativeeventfilter.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractproxymodel.h \
@@ -658,13 +689,10 @@ debug\moc_editorwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidge
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcollator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineoption.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineparser.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreapplication.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcryptographichash.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdatetime.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdeadlinetimer.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qelapsedtimer.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdiriterator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeasingcurve.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qendian.h \
@@ -686,10 +714,6 @@ debug\moc_editorwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidge
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qidentityproxymodel.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qisenum.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibrary.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibraryinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qversionnumber.h \
@@ -846,25 +870,122 @@ debug\moc_editorwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidge
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtexttable.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvalidator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtguiversion.h \
-		..\Code\User\jsonconnection.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue \
 		..\Code\WindowForms\editorwindow.h \
 		debug\moc_predefs.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\bin\moc.exe
 	E:\PROGRAMI\Qt\5.9\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IE:/PROGRAMI/Qt/5.9/msvc2015_64/mkspecs/win32-msvc -IE:/ProgramingProjects/GroundPlanner/Code -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtWidgets -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtGui -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtANGLE -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\8.1\include\\shared" -I"C:\Program Files (x86)\Windows Kits\8.1\include\\um" -I"C:\Program Files (x86)\Windows Kits\8.1\include\\winrt" ..\Code\WindowForms\editorwindow.h -o debug\moc_editorwindow.cpp
 
+debug\moc_clientwindow.cpp: ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QWidget \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qwidget.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtguiglobal.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qglobal.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qconfig.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtcore-config.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsystemdetection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qprocessordetection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtypeinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsysinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlogging.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qflags.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbasicatomic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qgenericatomic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qglobalstatic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmutex.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qnumeric.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qversiontagging.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtgui-config.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qwindowdefs.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qnamespace.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstring.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qchar.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbytearray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qrefcount.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qarraydata.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstringbuilder.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qalgorithms.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qhashfunctions.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpair.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbytearraylist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qregexp.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstringmatcher.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreevent.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qscopedpointer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmetatype.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobject_impl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmargins.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpaintdevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qrect.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsize.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpoint.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpalette.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qcolor.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qrgb.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qrgba64.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qbrush.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qvector.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qmatrix.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpolygon.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qregion.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdatastream.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qiodevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qline.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtransform.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpainterpath.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qimage.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpixelformat.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpixmap.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsharedpointer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qshareddata.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qhash.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qfont.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qfontmetrics.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qfontinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qcursor.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qkeysequence.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qevent.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qvariant.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmap.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdebug.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtextstream.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlocale.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qset.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qurl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qurlquery.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfile.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfiledevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvector2d.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtouchdevice.h \
+		..\Code\User\auserwindow.h \
+		..\Code\WindowForms\clientwindow.h \
+		debug\moc_predefs.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\bin\moc.exe
+	E:\PROGRAMI\Qt\5.9\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IE:/PROGRAMI/Qt/5.9/msvc2015_64/mkspecs/win32-msvc -IE:/ProgramingProjects/GroundPlanner/Code -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtWidgets -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtGui -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtANGLE -IE:/PROGRAMI/Qt/5.9/msvc2015_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\8.1\include\\shared" -I"C:\Program Files (x86)\Windows Kits\8.1\include\\um" -I"C:\Program Files (x86)\Windows Kits\8.1\include\\winrt" ..\Code\WindowForms\clientwindow.h -o debug\moc_clientwindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_auserwindow.h ui_editorwindow.h
+compiler_uic_make_all: ui_auserwindow.h ui_editorwindow.h ui_clientwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_auserwindow.h ui_editorwindow.h
+	-$(DEL_FILE) ui_auserwindow.h ui_editorwindow.h ui_clientwindow.h
 ui_auserwindow.h: ..\Code\WindowForms\auserwindow.ui \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\bin\uic.exe
 	E:\PROGRAMI\Qt\5.9\msvc2015_64\bin\uic.exe ..\Code\WindowForms\auserwindow.ui -o ui_auserwindow.h
@@ -872,6 +993,10 @@ ui_auserwindow.h: ..\Code\WindowForms\auserwindow.ui \
 ui_editorwindow.h: ..\Code\WindowForms\editorwindow.ui \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\bin\uic.exe
 	E:\PROGRAMI\Qt\5.9\msvc2015_64\bin\uic.exe ..\Code\WindowForms\editorwindow.ui -o ui_editorwindow.h
+
+ui_clientwindow.h: ..\Code\WindowForms\clientwindow.ui \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\bin\uic.exe
+	E:\PROGRAMI\Qt\5.9\msvc2015_64\bin\uic.exe ..\Code\WindowForms\clientwindow.ui -o ui_clientwindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -1028,6 +1153,21 @@ debug\main.obj: ..\Code\main.cpp ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\Qt
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QLayout \
 		..\Code\User\auserwindow.h \
 		../Code/User/global.h \
+		../Code/User/jsonconnection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGui \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGuiDepends \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCore \
@@ -1054,8 +1194,6 @@ debug\main.obj: ..\Code\main.cpp ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\Qt
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdatetime.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdeadlinetimer.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qelapsedtimer.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdiriterator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeasingcurve.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qendian.h \
@@ -1077,10 +1215,6 @@ debug\main.obj: ..\Code\main.cpp ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\Qt
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qidentityproxymodel.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qisenum.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibrary.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibraryinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qversionnumber.h \
@@ -1235,15 +1369,7 @@ debug\main.obj: ..\Code\main.cpp ..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\Qt
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtexttable.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvalidator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtguiversion.h \
-		../Code/User/jsonconnection.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue
+		../Code/WindowForms/clientwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\main.obj ..\Code\main.cpp
 
 debug\room.obj: ..\Code\User\room.cpp ../Code/User/room.h \
@@ -1600,7 +1726,263 @@ debug\auserwindow.obj: ..\Code\WindowForms\auserwindow.cpp ..\Code\User\auserwin
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_auserwindow.h
+		ui_auserwindow.h \
+		../Code/WindowForms/clientwindow.h \
+		../Code/WindowForms/editorwindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDebug \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QMouseEvent \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpen.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QInputDialog \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qinputdialog.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qdialog.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QPoint \
+		../Code/WindowForms/auserwindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QMainWindow \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qmainwindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qicon.h \
+		../Code/User/floor.h \
+		../Code/User/room.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QImage \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QPainter \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpainter.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QPolygon \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QPen \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QRect \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QPainterPath \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QLayout \
+		../Code/User/global.h \
+		../Code/User/jsonconnection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGui \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGuiDepends \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCore \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCoreDepends \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractanimation.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractproxymodel.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractstate.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstracttransition.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qanimationgroup.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qarraydataops.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qarraydatapointer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbasictimer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbitarray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbuffer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbytearraymatcher.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcache.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcollator.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineoption.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineparser.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcryptographichash.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdatetime.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdeadlinetimer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qelapsedtimer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdiriterator.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeasingcurve.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qendian.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventtransition.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qexception.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileselector.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QObject \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QStringList \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfinalstate.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfuture.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfutureinterface.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qrunnable.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qresultstore.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfuturewatcher.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qhistorystate.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qidentityproxymodel.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qisenum.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibrary.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibraryinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qversionnumber.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlinkedlist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlockfile.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qloggingcategory.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmath.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmetaobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmimedata.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmimedatabase.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmimetype.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qoperatingsystemversion.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpauseanimation.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qplugin.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpointer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpluginloader.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qprocess.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpropertyanimation.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qvariantanimation.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qqueue.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qreadwritelock.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qresource.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsavefile.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsemaphore.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsettings.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsharedmemory.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsignalmapper.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsignaltransition.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsocketnotifier.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstack.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstandardpaths.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstate.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstatemachine.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstorageinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstringlistmodel.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsystemsemaphore.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtemporarydir.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QScopedPointer \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtemporaryfile.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtextcodec.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qthread.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qthreadpool.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qthreadstorage.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtimeline.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtimer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtimezone.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtranslator.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtypetraits.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\quuid.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qwaitcondition.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qwineventnotifier.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qxmlstream.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtcoreversion.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextlayout.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qglyphrun.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qrawfont.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qfontdatabase.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qaccessible.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qaccessiblebridge.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qaccessibleobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qaccessibleplugin.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qbackingstore.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qwindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QEvent \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QMargins \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qsurface.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qsurfaceformat.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qbitmap.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qclipboard.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qdrag.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qgenericmatrix.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qgenericplugin.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qgenericpluginfactory.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qiconengine.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qiconengineplugin.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qimageiohandler.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qimagereader.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qimagewriter.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qmatrix4x4.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvector3d.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvector4d.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qquaternion.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qmovie.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qoffscreensurface.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopengl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qt_windows.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtANGLE\GLES3\gl3.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtANGLE\GLES3\gl3platform.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtANGLE\KHR\khrplatform.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtANGLE\GLES2\gl2.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtANGLE\GLES2\gl2platform.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopengles2ext.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglext.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglbuffer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglcontext.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QSurfaceFormat \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglversionfunctions.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopengldebug.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglextrafunctions.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglfunctions.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglframebufferobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglpaintdevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglpixeltransferoptions.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QSharedDataPointer \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglshaderprogram.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopengltexture.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopengltextureblitter.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QMatrix3x3 \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QMatrix4x4 \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopengltimerquery.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglvertexarrayobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qopenglwindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QPaintDeviceWindow \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpaintdevicewindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QWindow \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QPaintDevice \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QOpenGLContext \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpagedpaintdevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpagelayout.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpagesize.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpaintengine.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpdfwriter.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpicture.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpictureformatplugin.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpixmapcache.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qrasterwindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qscreen.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QList \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QSize \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QSizeF \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QTransform \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qsessionmanager.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qstandarditemmodel.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qstatictext.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qstylehints.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qsyntaxhighlighter.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextdocumentfragment.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextdocumentwriter.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtextlist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtexttable.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtguiversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\auserwindow.obj ..\Code\WindowForms\auserwindow.cpp
 
 debug\editorwindow.obj: ..\Code\WindowForms\editorwindow.cpp ../Code/WindowForms/editorwindow.h \
@@ -1739,13 +2121,29 @@ debug\editorwindow.obj: ..\Code\WindowForms\editorwindow.cpp ../Code/WindowForms
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QLayout \
 		..\Code\User\auserwindow.h \
 		../Code/User/global.h \
+		../Code/User/jsonconnection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGui \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\QtGuiDepends \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCore \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QtCoreDepends \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractanimation.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstracteventdispatcher.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeventloop.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractitemmodel.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractnativeeventfilter.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qabstractproxymodel.h \
@@ -1762,13 +2160,10 @@ debug\editorwindow.obj: ..\Code\WindowForms\editorwindow.cpp ../Code/WindowForms
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcollator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineoption.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcommandlineparser.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreapplication.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcryptographichash.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdatetime.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdeadlinetimer.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qelapsedtimer.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdir.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfileinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdiriterator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qeasingcurve.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qendian.h \
@@ -1790,10 +2185,6 @@ debug\editorwindow.obj: ..\Code\WindowForms\editorwindow.cpp ../Code/WindowForms
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qidentityproxymodel.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qisenum.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonarray.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonvalue.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsondocument.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibrary.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlibraryinfo.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qversionnumber.h \
@@ -1950,15 +2341,6 @@ debug\editorwindow.obj: ..\Code\WindowForms\editorwindow.cpp ../Code/WindowForms
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtexttable.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvalidator.h \
 		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtguiversion.h \
-		../Code/User/jsonconnection.h \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFile \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QDir \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QFileInfo \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QCoreApplication \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonDocument \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonObject \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonArray \
-		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\QJsonValue \
 		ui_editorwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\editorwindow.obj ..\Code\WindowForms\editorwindow.cpp
 
@@ -2171,6 +2553,111 @@ debug\jsonconnection.obj: ..\Code\User\jsonconnection.cpp ../Code/User/jsonconne
 		../Code/User/global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\jsonconnection.obj ..\Code\User\jsonconnection.cpp
 
+debug\clientwindow.obj: ..\Code\WindowForms\clientwindow.cpp ../Code/WindowForms/clientwindow.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\QWidget \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qwidget.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtguiglobal.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qglobal.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qconfig.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtcore-config.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsystemdetection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qprocessordetection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtypeinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsysinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlogging.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qflags.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbasicatomic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qgenericatomic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qglobalstatic.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmutex.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qnumeric.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qversiontagging.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtgui-config.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qwindowdefs.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qnamespace.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobject.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstring.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qchar.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbytearray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qrefcount.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qarraydata.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstringbuilder.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qalgorithms.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qhashfunctions.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpair.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qbytearraylist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qregexp.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qstringmatcher.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcoreevent.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qscopedpointer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmetatype.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qobject_impl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmargins.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpaintdevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qrect.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsize.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qpoint.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpalette.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qcolor.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qrgb.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qrgba64.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qbrush.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qvector.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qmatrix.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpolygon.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qregion.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdatastream.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qiodevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qline.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtransform.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpainterpath.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qimage.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpixelformat.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qpixmap.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsharedpointer.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qshareddata.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qhash.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qfont.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qfontmetrics.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qfontinfo.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qcursor.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qkeysequence.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qevent.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qvariant.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qmap.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qdebug.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qtextstream.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qlocale.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qset.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qurl.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qurlquery.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfile.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtCore\qfiledevice.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qvector2d.h \
+		..\..\..\PROGRAMI\Qt\5.9\msvc2015_64\include\QtGui\qtouchdevice.h \
+		..\Code\User\auserwindow.h \
+		ui_clientwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\clientwindow.obj ..\Code\WindowForms\clientwindow.cpp
+
 debug\qrc_res.obj: debug\qrc_res.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\qrc_res.obj debug\qrc_res.cpp
 
@@ -2179,6 +2666,9 @@ debug\moc_auserwindow.obj: debug\moc_auserwindow.cpp
 
 debug\moc_editorwindow.obj: debug\moc_editorwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\moc_editorwindow.obj debug\moc_editorwindow.cpp
+
+debug\moc_clientwindow.obj: debug\moc_clientwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\moc_clientwindow.obj debug\moc_clientwindow.cpp
 
 ####### Install
 

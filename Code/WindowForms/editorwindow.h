@@ -27,9 +27,9 @@ public:
 public:
     explicit EditorWindow(QWidget *parent = 0);    
     ~EditorWindow();
+    virtual void OnCloseWindow() override;   //Clears resources (pointers to addresses)
 
-    bool arePointsSticky;
-    Room *activeRoom;
+    bool arePointsSticky;    
 
     void RefreshDropdownContent();
 
@@ -46,6 +46,8 @@ private slots:
     void on_dropBox_floors_activated(const QString& _name);
 
     void on_saveAll_clicked();
+
+    void on_switchWindow_clicked();
 
 private:
     Ui::EditorWindow *ui;

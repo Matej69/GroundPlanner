@@ -660,6 +660,22 @@ QInputDialog {background: red;};</string>
     </property>
    </widget>
   </widget>
+  <widget class="QPushButton" name="switchWindow">
+   <property name="geometry">
+    <rect>
+     <x>784</x>
+     <y>0</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:blue;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

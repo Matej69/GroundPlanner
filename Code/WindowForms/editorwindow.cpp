@@ -12,21 +12,24 @@ EditorWindow::EditorWindow(QWidget *parent) :
     this->setWindowTitle("Editor");
     this->setMouseTracking(true);
 
+    //remove later if not needed
+    floors = QVector<Floor>();
+
     activePoint = nullptr;
-    activeRoom = nullptr;
-    activeFloor = nullptr;
     movableRoom = nullptr;
+
     arePointsSticky = true;
     canDeletePoint = false;
     canDeleteRoom = false;
-    floors = QVector<Floor>();
 
-
-    //for testing
+    //read all floors from JSON(must be here because thisWindow is still undefined if ReadAll is called in base class)
     JSONConnection con;
     con.ReadAll(floors, thisWindow);
 
-    SetActiveFloor(floors[0]);
+
+
+    if(floors.length() > 0)
+        SetActiveFloor(floors[0]);
     RefreshDropdownContent();
 
 }
@@ -35,6 +38,14 @@ EditorWindow::~EditorWindow()
 {
     delete ui;
 }
+void EditorWindow::OnCloseWindow()
+{
+    qDebug() << "Editor Clearing taken resources";
+
+}
+
+
+
 
 
 void EditorWindow::OnFloorDropdown()
@@ -249,10 +260,9 @@ void EditorWindow::on_saveAll_clicked()
 }
 
 
-
+//ON ITEM CLICKED
 void EditorWindow::on_dropBox_floors_activated(const QString& _name)
-{
-    //ON ITEM CLICKED
+{    
     for(int i = 0; i < floors.length(); ++i)
         if(floors[i].nameID == _name)
             SetActiveFloor(floors[i]);
@@ -269,4 +279,9 @@ void EditorWindow::RefreshDropdownContent()
     ui->dropBox_floors->clear();
     for(int i = 0; i < floors.length(); ++i)
         ui->dropBox_floors->addItem(floors[i].nameID);
+}
+
+void EditorWindow::on_switchWindow_clicked()
+{
+    SwitchToWindow(AUserWindow::E_USER::CLIENT, this);
 }

@@ -30,7 +30,8 @@ SOURCES += \
     WindowForms/auserwindow.cpp \
     WindowForms/editorwindow.cpp \
     User/global.cpp \
-    User/jsonconnection.cpp
+    User/jsonconnection.cpp \
+    WindowForms/clientwindow.cpp
 
 HEADERS += \
     User/room.h \
@@ -38,11 +39,13 @@ HEADERS += \
     WindowForms/auserwindow.h \
     WindowForms/editorwindow.h \
     User/global.h \
-    User/jsonconnection.h
+    User/jsonconnection.h \
+    WindowForms/clientwindow.h
 
 FORMS += \
     WindowForms/auserwindow.ui \
-    WindowForms/editorwindow.ui
+    WindowForms/editorwindow.ui \
+    WindowForms/clientwindow.ui
 
 RESOURCES += \
     Resources/res.qrc

@@ -32,6 +32,7 @@ public:
     QPushButton *roomDelete;
     QComboBox *dropBox_floors;
     QPushButton *saveAll;
+    QPushButton *switchWindow;
 
     void setupUi(QWidget *EditorWindow)
     {
@@ -156,6 +157,10 @@ public:
         saveAll->setGeometry(QRect(10, 90, 121, 41));
         saveAll->setAutoFillBackground(false);
         saveAll->setIconSize(QSize(32, 32));
+        switchWindow = new QPushButton(EditorWindow);
+        switchWindow->setObjectName(QStringLiteral("switchWindow"));
+        switchWindow->setGeometry(QRect(784, 0, 51, 51));
+        switchWindow->setStyleSheet(QStringLiteral("background:blue;"));
 
         retranslateUi(EditorWindow);
 
@@ -192,6 +197,7 @@ public:
 "QDialog {background: red;};\n"
 "QInputDialog {background: red;};", Q_NULLPTR));
         saveAll->setText(QApplication::translate("EditorWindow", "SAVE", Q_NULLPTR));
+        switchWindow->setText(QString());
     } // retranslateUi
 
 };

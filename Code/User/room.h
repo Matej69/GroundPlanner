@@ -27,7 +27,9 @@ public:
     Room();
     ~Room();
 
-    QString nameID;
+    QWidget *window;
+
+    //QString nameID;
     QLineEdit* editBox;
     QVector<QPoint> points;
     QPoint centerPoint;
@@ -44,8 +46,10 @@ public:
         static int w,h,xDist,yDist;
     };
 
-    void UpdateTextboxPos();
+    QString GetName();
+    void SetName(QString _name);
 
+    void UpdateTextboxPos();
 
     void SetActive(bool _state);
     void SetTextboxVisiblity(bool _state);

@@ -16,15 +16,17 @@ class ClientWindow : public AUserWindow
 public:
     explicit ClientWindow(QWidget *parent = 0);
     ~ClientWindow();
-    virtual void OnCloseWindow() override;   //Clears resources (pointers to addresses)
+    virtual void CloseWindow() override;   //Clears resources (pointers to addresses)
 
 private slots:
     void on_switchWindow_clicked();
     void on_dropBox_floors_activated(const QString& _name);
+    void on_dropBox_rooms_activated(const QString& _name);
 
 private:
     Ui::ClientWindow *ui;
     void RefreshDropdownContent();
+    void RefreshRoomsDropdownContent();
 };
 
 #endif // CLIENTWINDOW_H

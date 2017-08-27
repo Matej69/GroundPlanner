@@ -16,6 +16,7 @@ public:
     void RenderFloor(QWidget *_window);
     void AddRoom(Room &_room, QWidget *_window, bool isTextboxVisible);
     void DeleteRoom(Room &_room);
+    void SetAllTextBoxVisiblity(bool _visibility);
 
 
 

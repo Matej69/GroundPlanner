@@ -11,9 +11,10 @@ EditorWindow::EditorWindow(QWidget *parent) :
     thisWindow = this;
     this->setWindowTitle("Editor");
     this->setMouseTracking(true);
+    setAttribute(Qt::WA_QuitOnClose);
 
     //remove later if not needed
-    floors = QVector<Floor>();
+    //floors = QVector<Floor>();
 
     activePoint = nullptr;
     movableRoom = nullptr;
@@ -26,22 +27,23 @@ EditorWindow::EditorWindow(QWidget *parent) :
     JSONConnection con;
     con.ReadAll(floors, thisWindow);
 
-
-
     if(floors.length() > 0)
         SetActiveFloor(floors[0]);
-    RefreshDropdownContent();
-
+    RefreshDropdownContent();    
 }
 
 EditorWindow::~EditorWindow()
 {
+    qDebug() << "EDITOR DECONSTRUCTOR CALLED";
     delete ui;
 }
-void EditorWindow::OnCloseWindow()
+void EditorWindow::CloseWindow()
 {
-    qDebug() << "Editor Clearing taken resources";
+    //Delete taken resources
 
+    //Close window
+    qDebug() << "EDITOR CLOSED";
+    close();
 }
 
 
@@ -56,19 +58,6 @@ void EditorWindow::OnFloorDropdown()
 void EditorWindow::OnUserSwitchButton()
 {
 }
-
-void EditorWindow::SetActiveRoom(Room& _room)
-{
-    //previous room will be inactive
-    if(activeRoom != nullptr)
-    {
-        activeRoom->isActive = false;
-    }
-    //new current room will become active
-    activeRoom = &_room;
-    activeRoom->isActive = true;
-}
-
 
 
 void EditorWindow::mousePressEvent(QMouseEvent *e)
@@ -158,7 +147,7 @@ void EditorWindow::mouseMoveEvent(QMouseEvent *e)
 
 
 //*************************************************************************************************
-//WHEN NEW ROOM IS ADDED PROGRAM WILL BREAK BECAUSEOF TEXTFIELD OF X ROOM THAT IS PROBABLY NULL
+//WHEN NEW ROOM IS ADDED TEXTFIELD WILL NOT BE VISIBLE
 //*************************************************************************************************
 void EditorWindow::on_roomAdd_clicked()
 {
@@ -180,6 +169,7 @@ void EditorWindow::on_roomAdd_clicked()
        //new room will also have visible textbox
         //activeFloor->rooms[activeFloor->rooms.length()-1].SetTextboxVisiblity(true);
        //active room will be newly added room
+        room.SetTextboxVisiblity(true);
         SetActiveRoom(activeFloor->rooms[activeFloor->rooms.length()-1]);
     }
 
@@ -206,9 +196,13 @@ void EditorWindow::on_floorAdd_clicked()
                                               "",
                                               &isConfirmed);
     if(isConfirmed)
-    {
+    {        
+        //old room inputs are done here because of 'push_back' and vector realocation
+        activeFloor->SetAllTextBoxVisiblity(false);
+        activeFloor = nullptr;
+        //only after we should be pushing something to vector
         floors.push_back(Floor(floorName));
-        //SetActiveFloor(floors[floors.length()-1]);
+        SetActiveFloor(floors[floors.length()-1]);
         RefreshDropdownContent();
     }
 }

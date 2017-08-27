@@ -24,7 +24,7 @@ class AUserWindow : public QMainWindow
 public:
     explicit AUserWindow();
     virtual ~AUserWindow();
-    virtual void OnCloseWindow();   //Clears resources (pointers to addresses)
+    virtual void CloseWindow();   //Clears resources (pointers to addresses) / used since close() does not call deconstructor
 
 
 protected:
@@ -39,7 +39,8 @@ protected:
     //virtual void OnUserSwitchButton();
 
     void paintEvent(QPaintEvent *e);
-    void SetActiveFloor(Floor& _floor);   
+    void SetActiveFloor(Floor& _floor);
+    void SetActiveRoom(Room& _room);
 
     static void SwitchToWindow(E_USER _userType, AUserWindow* _win);
 };

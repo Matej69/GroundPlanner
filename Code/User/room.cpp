@@ -12,11 +12,14 @@ int Room::TextboxInfo::yDist = 14;
 
 Room::Room(QWidget *_window)
 {    
+    this->window = _window;
+
     //for now init will be here but it should happen once and not in every constructor
     Room::IMGInfo::edgePointIMG.load(":/img/edgePoint.png");
     Room::IMGInfo::centerPointIMG.load(":/img/dragPoint.png");
 
-    editBox = nullptr;
+    editBox = new QLineEdit(window);
+    //window->layout()->addWidget(editBox);
 
     centerPoint = QPoint(70,70);
     penWidth = 2;
@@ -30,7 +33,16 @@ Room::Room()
 
 Room::~Room()
 {
-    delete editBox;
+}
+
+QString Room::GetName()
+{
+    return editBox->text();
+}
+
+void Room::SetName(QString _name)
+{
+    editBox->setText(_name);
 }
 
 

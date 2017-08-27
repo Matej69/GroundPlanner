@@ -5,8 +5,8 @@ QString JSONConnection::path;
 JSONConnection::JSONConnection()
 {
     //Path should be given once not on every constructor call
-    JSONConnection::path = QDir::currentPath() +QString("/json.json");    
-
+    JSONConnection::path = QDir::currentPath() +QString("/json.json");
+    qDebug() << path;
 }
 
 void JSONConnection::ReadAll(QVector<Floor> &_floors, QWidget *_window)
@@ -34,15 +34,18 @@ void JSONConnection::ReadAll(QVector<Floor> &_floors, QWidget *_window)
         int i = 0;
         foreach (QJsonValue jsonRoom, jsonRooms) {
             Room room(_window);
-            room.nameID = jsonRoom.toObject().value("nameID").toString();
+            //room.nameID = jsonRoom.toObject().value("nameID").toString();
+            room.SetName(jsonRoom.toObject().value("nameID").toString());
             //for each point
             QJsonArray jsonPoints = jsonRoom.toObject().value("points").toArray();
             foreach (QJsonValue jsonPoint, jsonPoints) {
                 room.AddPoint(QPoint(jsonPoint.toObject().value("x").toInt(), jsonPoint.toObject().value("y").toInt()));
             }
             floor.AddRoom(room, _window, false);
-        }
-        _floors.push_back(floor);
+        }        
+        //at first, all textboxes will be invisible and later only active room ones will be visible
+        floor.SetAllTextBoxVisiblity(false);
+        _floors.push_back(floor);        
     }
 
 }
@@ -78,7 +81,8 @@ void JSONConnection::WriteAll(QVector<Floor> &_floors)
         jsonFile.write("\n\t\t \"rooms\":[");
          for (int i = 0; i < floor.rooms.length(); ++i) {
              Room& room = floor.rooms[i];
-             jsonFile.write(getCharP(string("\n\t\t\t {\"nameID\":\"")+ getStr(room.nameID)+ "\"," ));
+             //jsonFile.write(getCharP(string("\n\t\t\t {\"nameID\":\"")+ getStr(room.nameID)+ "\"," ));
+             jsonFile.write(getCharP(string("\n\t\t\t {\"nameID\":\"")+ getStr(room.GetName())+ "\"," ));
 
              jsonFile.write("\n\t\t\t \"points\": [");
              for (int i = 0; i < room.points.length(); ++i) {

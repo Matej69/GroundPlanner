@@ -27,7 +27,7 @@ public:
 public:
     explicit EditorWindow(QWidget *parent = 0);    
     ~EditorWindow();
-    virtual void OnCloseWindow() override;   //Clears resources (pointers to addresses)
+    virtual void CloseWindow() override;   //Clears resources (pointers to addresses)
 
     bool arePointsSticky;    
 
@@ -62,8 +62,6 @@ private:
     void mousePressEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
-
-    void SetActiveRoom(Room& _room);   //set new room to be active one, set previous to not be active
 
 
 };

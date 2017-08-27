@@ -8,6 +8,7 @@ ClientWindow::ClientWindow(QWidget *parent) :
     thisWindow = this;
     this->setWindowTitle("Client");
     this->setMouseTracking(true);
+    setAttribute(Qt::WA_QuitOnClose);
 
     activeFloor = nullptr;
     activeRoom = nullptr;
@@ -16,19 +17,27 @@ ClientWindow::ClientWindow(QWidget *parent) :
     JSONConnection con;
     con.ReadAll(floors, thisWindow);
 
+    qDebug() << "WORKZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+
     if(floors.length() > 0)
         SetActiveFloor(floors[0]);
     RefreshDropdownContent();
+    RefreshRoomsDropdownContent();
 }
 
 ClientWindow::~ClientWindow()
 {
+    qDebug() << "CLIENT DECONSTRUCTOR CALLED";
     delete ui;
 }
 
-void ClientWindow::OnCloseWindow()
+void ClientWindow::CloseWindow()
 {
-    qDebug() << "Client Clearing taken resources";
+    //Delete taken resources -> destructor of floor/room are taking of memory release
+    floors.clear();
+    //Close window
+    qDebug() << "CLIENT CLOSED";
+    close();
 }
 
 
@@ -42,6 +51,13 @@ void ClientWindow::RefreshDropdownContent()
         ui->dropBox_floors->addItem(floors[i].nameID);
 }
 
+void ClientWindow::RefreshRoomsDropdownContent()
+{
+    ui->dropBox_rooms->clear();
+    for(int i = 0; i < activeFloor->rooms.length(); ++i)
+        ui->dropBox_rooms->addItem(activeFloor->rooms[i].GetName());
+}
+
 
 void ClientWindow::on_switchWindow_clicked()
 {
@@ -52,5 +68,15 @@ void ClientWindow::on_dropBox_floors_activated(const QString& _name)
 {
     for(int i = 0; i < floors.length(); ++i)
         if(floors[i].nameID == _name)
+        {
             SetActiveFloor(floors[i]);
+            RefreshRoomsDropdownContent();
+        }
+}
+
+void ClientWindow::on_dropBox_rooms_activated(const QString& _name)
+{
+    for(int i = 0; i < activeFloor->rooms.length(); ++i)
+        if(activeFloor->rooms[i].GetName() == _name)
+            SetActiveRoom(activeFloor->rooms[i]);
 }

@@ -13,8 +13,9 @@ AUserWindow::AUserWindow()
 
 AUserWindow::~AUserWindow()
 {
+    qDebug() << "BASE DECONSTRUCTOR CALLED";
 }
-void AUserWindow::OnCloseWindow()
+void AUserWindow::CloseWindow()
 {
 }
 
@@ -27,32 +28,46 @@ void AUserWindow::paintEvent(QPaintEvent *e)
     thisWindow->update();
 }
 
+
+
+
+
 void AUserWindow::SetActiveFloor(Floor &_floor)
 {
     //disable textFields of all rooms on old floor
     if(activeFloor != nullptr)
-        for(int i = 0; i < activeFloor->rooms.length(); ++i)
-        {
-            Room& room = activeFloor->rooms[i];
-            room.SetTextboxVisiblity(false);
-        }
+        activeFloor->SetAllTextBoxVisiblity(false);
     //re-asigne pointer to another floor
     activeFloor = &_floor;
     //enable textFields of all rooms on new floor
-    for(int i = 0; i < activeFloor->rooms.length(); ++i)
-    {
-        Room& room = activeFloor->rooms[i];
-        room.SetTextboxVisiblity(true);
-    }
+    activeFloor->SetAllTextBoxVisiblity(true);
+
 }
+
+void AUserWindow::SetActiveRoom(Room &_room)
+{
+    //previous room will be inactive
+    if(activeRoom != nullptr)
+    {
+        activeRoom->isActive = false;
+    }
+    //new current room will become active
+    activeRoom = &_room;
+    activeRoom->isActive = true;
+}
+
+
+
+
 
 void AUserWindow::SwitchToWindow(E_USER _userType, AUserWindow* _win)
 {
     //delete previous(DESTRUCTOR MUST BE CALLED)
     if(_win != nullptr)
     {
-        _win->OnCloseWindow();  //deletes resources
-        _win->close();          //closes window
+        _win->CloseWindow();
+        //_win->OnCloseWindow();  //deletes resources
+        //_win->close();          //closes window
     }
     //create new Window
     AUserWindow *newWindow;

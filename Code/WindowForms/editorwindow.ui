@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background:#131313; color:white</string>
+   <string notr="true"> color:black</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="enabled">
@@ -25,7 +25,7 @@
      <x>0</x>
      <y>0</y>
      <width>141</width>
-     <height>161</height>
+     <height>131</height>
     </rect>
    </property>
    <property name="palette">
@@ -34,18 +34,18 @@
       <colorrole role="WindowText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -88,9 +88,9 @@
       <colorrole role="Text">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -106,27 +106,27 @@
       <colorrole role="ButtonText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -171,18 +171,18 @@
       <colorrole role="WindowText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -225,9 +225,9 @@
       <colorrole role="Text">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -243,27 +243,27 @@
       <colorrole role="ButtonText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -308,18 +308,18 @@
       <colorrole role="WindowText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -362,9 +362,9 @@
       <colorrole role="Text">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -380,27 +380,27 @@
       <colorrole role="ButtonText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>96</red>
-         <green>96</green>
-         <blue>96</blue>
+        <color alpha="0">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -443,11 +443,14 @@
      </disabled>
     </palette>
    </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:#606060;</string>
+    <string notr="true">background-color:rgba(0, 0, 0, 0);</string>
    </property>
    <widget class="QPushButton" name="roomAdd">
     <property name="geometry">
@@ -462,10 +465,11 @@
      <string notr="true">background:#3f3f3f; 
 color:white;font-weight:bold;font-size:10px;
 QDialog {background: red;};
-QInputDialog {background: red;};</string>
+QInputDialog {background: red;};
+border-image: url(&quot;:/img/addRoom&quot;);</string>
     </property>
     <property name="text">
-     <string>+room</string>
+     <string/>
     </property>
     <property name="iconSize">
      <size>
@@ -493,13 +497,14 @@ QInputDialog {background: red;};</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string>background:#3f3f3f; 
+     <string notr="true">background:#3f3f3f; 
 color:white;font-weight:bold;font-size:10px;
 QDialog {background: red;};
-QInputDialog {background: red;};</string>
+QInputDialog {background: red;};
+border-image: url(&quot;:/img/addPoint&quot;);</string>
     </property>
     <property name="text">
-     <string>+point</string>
+     <string/>
     </property>
     <property name="iconSize">
      <size>
@@ -518,19 +523,29 @@ QInputDialog {background: red;};</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string>background:#3f3f3f; 
+     <string notr="true">background:#3f3f3f; 
 color:white;font-weight:bold;font-size:10px;
 QDialog {background: red;};
-QInputDialog {background: red;};</string>
+QInputDialog {background: red;};
+border-image: url(&quot;:/img/addFloor&quot;);</string>
     </property>
     <property name="text">
-     <string>+floor</string>
+     <string/>
     </property>
     <property name="iconSize">
      <size>
       <width>32</width>
       <height>32</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="pointDelete">
@@ -543,13 +558,15 @@ QInputDialog {background: red;};</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string>background:#3f3f3f; 
+     <string notr="true">background:#3f3f3f; 
 color:white;font-weight:bold;font-size:10px;
 QDialog {background: red;};
-QInputDialog {background: red;};</string>
+QInputDialog {background: red;};
+border-image: url(':/img/deletePointInactive');
+</string>
     </property>
     <property name="text">
-     <string>-point</string>
+     <string/>
     </property>
     <property name="iconSize">
      <size>
@@ -571,13 +588,14 @@ QInputDialog {background: red;};</string>
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string>background:#3f3f3f; 
+     <string notr="true">background:#3f3f3f; 
 color:white;font-weight:bold;font-size:10px;
 QDialog {background: red;};
-QInputDialog {background: red;};</string>
+QInputDialog {background: red;};
+border-image: url(&quot;:/img/deleteFloor&quot;);</string>
     </property>
     <property name="text">
-     <string>-floor</string>
+     <string/>
     </property>
     <property name="iconSize">
      <size>
@@ -597,10 +615,11 @@ QInputDialog {background: red;};</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background:#3f3f3f; 
-color:white;font-weight:bold;font-size:10px;</string>
+color:white;font-weight:bold;font-size:10px;
+border-image: url(&quot;:/img/deleteRoom&quot;);</string>
     </property>
     <property name="text">
-     <string>-room</string>
+     <string/>
     </property>
     <property name="iconSize">
      <size>
@@ -618,36 +637,27 @@ color:white;font-weight:bold;font-size:10px;</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QComboBox" name="dropBox_floors">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>130</y>
-      <width>121</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background:#3f3f3f; color:white;font-weight:bold;</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="saveAll">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>90</y>
       <width>121</width>
-      <height>41</height>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string>background:#3f3f3f; 
-color:white;font-weight:bold;font-size:10px;
-QDialog {background: red;};
-QInputDialog {background: red;};</string>
+     <string notr="true">background:white;color:black;font-weight:bold;</string>
     </property>
     <property name="text">
      <string>SAVE</string>
@@ -657,6 +667,19 @@ QInputDialog {background: red;};</string>
       <width>32</width>
       <height>32</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="dropBox_floors">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:white;color:black;font-weight:bold;</string>
     </property>
    </widget>
   </widget>
@@ -670,7 +693,7 @@ QInputDialog {background: red;};</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:blue;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>

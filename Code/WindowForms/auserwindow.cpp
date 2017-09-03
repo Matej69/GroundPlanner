@@ -36,12 +36,11 @@ void AUserWindow::SetActiveFloor(Floor &_floor)
 {
     //disable textFields of all rooms on old floor
     if(activeFloor != nullptr)
-        activeFloor->SetAllTextBoxVisiblity(false);
+        activeFloor->SetAllTextBoxVisiblity(false);    
     //re-asigne pointer to another floor
     activeFloor = &_floor;
     //enable textFields of all rooms on new floor
     activeFloor->SetAllTextBoxVisiblity(true);
-
 }
 
 void AUserWindow::SetActiveRoom(Room &_room)

@@ -153,4 +153,12 @@ void Room::SetTextboxVisiblity(bool _state)
     }
 }
 
+void Room::SetTextboxEditability(bool _state)
+{
+    if(editBox != nullptr)
+    {
+        editBox->setReadOnly(!_state);
+    }
+}
+
 

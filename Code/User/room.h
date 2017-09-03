@@ -53,6 +53,7 @@ public:
 
     void SetActive(bool _state);
     void SetTextboxVisiblity(bool _state);
+    void SetTextboxEditability(bool _state);
 
     void AddPoint(QPoint &_point);
     void DeletePoint(QPoint &_point);

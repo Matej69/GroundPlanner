@@ -13,9 +13,6 @@ EditorWindow::EditorWindow(QWidget *parent) :
     this->setMouseTracking(true);
     setAttribute(Qt::WA_QuitOnClose);
 
-    //remove later if not needed
-    //floors = QVector<Floor>();
-
     activePoint = nullptr;
     movableRoom = nullptr;
 
@@ -145,6 +142,19 @@ void EditorWindow::mouseMoveEvent(QMouseEvent *e)
 
 }
 
+/*
+ * This will change whole stylesheet od a pointDelete Widget(button)
+*/
+void EditorWindow::SetDeletePointImg(EditorWindow::E_DELETE_POINT _type)
+{
+    if(_type == E_DELETE_POINT::ACTIVE)
+        ui->pointDelete->setStyleSheet("border-image: url(':/img/deletePointActive');");
+    else
+        ui->pointDelete->setStyleSheet("border-image: url(':/img/deletePointInactive');");
+
+
+}
+
 
 //*************************************************************************************************
 //WHEN NEW ROOM IS ADDED TEXTFIELD WILL NOT BE VISIBLE
@@ -198,12 +208,15 @@ void EditorWindow::on_floorAdd_clicked()
     if(isConfirmed)
     {        
         //old room inputs are done here because of 'push_back' and vector realocation
-        activeFloor->SetAllTextBoxVisiblity(false);
-        activeFloor = nullptr;
+        if(activeFloor != nullptr)
+        {
+            activeFloor->SetAllTextBoxVisiblity(false);
+            activeFloor = nullptr;
+        }
         //only after we should be pushing something to vector
         floors.push_back(Floor(floorName));
         SetActiveFloor(floors[floors.length()-1]);
-        RefreshDropdownContent();
+        RefreshDropdownContent();        
     }
 }
 
@@ -216,8 +229,7 @@ void EditorWindow::on_roomDelete_clicked()
     if(activeRoom != nullptr)
         for(int i = 0; i < activeFloor->rooms.length(); ++i)
             if(&activeFloor->rooms[i] == &(*activeRoom))
-            {
-                //delete activeRoom->editBox;
+            {                
                 activeFloor->DeleteRoom(*activeRoom);
                 activeRoom = nullptr;
                 break;
@@ -228,6 +240,10 @@ void EditorWindow::on_roomDelete_clicked()
 void EditorWindow::on_pointDelete_clicked()
 {
     canDeletePoint = !canDeletePoint;
+    if(canDeletePoint)
+         SetDeletePointImg(E_DELETE_POINT::ACTIVE);
+    else
+         SetDeletePointImg(E_DELETE_POINT::INACTIVE);
 }
 
 void EditorWindow::on_floorDelete_clicked()
@@ -237,6 +253,8 @@ void EditorWindow::on_floorDelete_clicked()
         for(int i = floors.length()-1; i >= 0; --i)
             if(&floors[i] == &*activeFloor)
             {
+                //old room inputs are done here because of 'push_back' and vector realocation
+                activeFloor->SetAllTextBoxVisiblity(false);
                 floors.removeAt(i);
                 activeFloor = nullptr;
                 activeRoom = nullptr;

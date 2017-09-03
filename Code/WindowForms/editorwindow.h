@@ -49,6 +49,7 @@ private slots:
 
     void on_switchWindow_clicked();
 
+
 private:
     Ui::EditorWindow *ui;
 
@@ -63,6 +64,8 @@ private:
     void mouseReleaseEvent(QMouseEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
 
+    enum E_DELETE_POINT{ ACTIVE, INACTIVE };
+    void SetDeletePointImg(E_DELETE_POINT _type);
 
 };
 

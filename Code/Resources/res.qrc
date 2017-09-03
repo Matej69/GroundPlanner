@@ -2,5 +2,13 @@
     <qresource prefix="/img">
         <file>dragPoint.png</file>
         <file>edgePoint.png</file>
+        <file>addFloor.png</file>
+        <file>addPoint.png</file>
+        <file>addRoom.png</file>
+        <file>deleteFloor.png</file>
+        <file>deletePointActive.png</file>
+        <file>deletePointInactive.png</file>
+        <file>deleteRoom.png</file>
+        <file>editorBackground.png</file>
     </qresource>
 </RCC>

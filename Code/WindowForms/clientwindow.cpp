@@ -19,10 +19,16 @@ ClientWindow::ClientWindow(QWidget *parent) :
 
     qDebug() << "WORKZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
 
+    //floor that will initialy be displayed
     if(floors.length() > 0)
+    {
         SetActiveFloor(floors[0]);
-    RefreshDropdownContent();
-    RefreshRoomsDropdownContent();
+        RefreshDropdownContent();
+        RefreshRoomsDropdownContent();
+        foreach (Room room, activeFloor->rooms) {
+            room.editBox->setReadOnly(true);
+        }
+    }
 }
 
 ClientWindow::~ClientWindow()
@@ -68,9 +74,12 @@ void ClientWindow::on_dropBox_floors_activated(const QString& _name)
 {
     for(int i = 0; i < floors.length(); ++i)
         if(floors[i].nameID == _name)
-        {
+        {            
             SetActiveFloor(floors[i]);
             RefreshRoomsDropdownContent();
+            foreach (Room room, activeFloor->rooms) {
+                room.editBox->setReadOnly(true);
+            }
         }
 }
 

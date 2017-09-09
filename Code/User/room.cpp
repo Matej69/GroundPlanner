@@ -90,14 +90,14 @@ void Room::RenderRoom(QWidget *_window)
     if(isActive)    //fill room with color only if it's active
     {
         QBrush fillBrush;
-        fillBrush.setColor(Qt::darkCyan);
+        fillBrush.setColor(Qt::green);
         fillBrush.setStyle(Qt::SolidPattern);
         painter.setBrush(fillBrush);
     }
 
     QPen pen;
     pen.setWidth(penWidth);
-    pen.setColor(Qt::white);
+    pen.setColor(Qt::darkCyan);
     pen.setJoinStyle(Qt::MiterJoin);
     painter.setPen(pen);
 
